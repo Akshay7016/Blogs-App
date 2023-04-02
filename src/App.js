@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useContext, useEffect } from 'react'
 
-function App() {
+import Blogs from './components/Blogs'
+import Header from './components/Header'
+import Pagination from './components/Pagination'
+
+import { AppContext } from './context/AppContext'
+
+const App = () => {
+  const { fetchBlogPosts } = useContext(AppContext);
+
+  useEffect(() => {
+    fetchBlogPosts();
+  },
+    // eslint-disable-next-line
+    [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='w-full h-full flex flex-col justify-center items-center'>
+      <Header />
+      <Blogs />
+      <Pagination />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
